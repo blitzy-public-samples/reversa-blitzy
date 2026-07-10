@@ -1,9 +1,14 @@
 # Blitzy Technical Specification vs. Reversa `_reversa_sdd/`: A Documentation-Artifact Comparison for ArduPilot
 
 > **Audience:** Account Executive (AE) leadership and the account-management team.
+>
 > **Purpose:** A rigorous, evidence-cited, dimension-by-dimension comparison of two reverse-engineering **documentation artifacts** produced for the same subject codebase — **ArduPilot** (`github.com/ArduPilot/ardupilot`): (a) the **Blitzy Platform Technical Specification** and (b) the **Reversa `_reversa_sdd/` output tree**.
 
-**Abstract.** This document compares how two competing reverse-documentation approaches describe the *same* legacy system, ArduPilot, and packages the finding for client-facing conversations. It is honest by construction: every comparative claim below resolves to a checkable location — a repository path for the Reversa side, a Technical Specification section for the Blitzy side, or an arXiv identifier for external corroboration — and wherever a capability exists on one side but not the other, the missing side is written explicitly as *"not present in provided inputs"* rather than inferred. A material constraint is stated up front and honored throughout: **the two *rendered* ArduPilot artifacts were not provided as inputs.** The comparison therefore proceeds at the **methodology / capability level**, grounded in Reversa's own product source (a faithful proxy for what Reversa *produces*) and in a genuine Blitzy Technical Specification (a faithful proxy for what Blitzy *produces*). Every point that would require ArduPilot line-level evidence is deferred to **Appendix B — Gap Register** and marked 🔴, never fabricated. The analysis finds that Reversa leads on traceability granularity, implicit-knowledge extraction, gap transparency, and machine-oriented reusability; that the two are near-parity on architectural visualization; and that Blitzy leads on runtime/dynamic validation breadth and single-artifact executive readability — with a real, evidenced balancing point recorded for **every** dimension.
+**Abstract.** This document compares how two competing reverse-documentation approaches describe the *same* legacy system, ArduPilot, and packages the finding for client-facing conversations. It is honest by construction. Every comparative claim below resolves to a checkable location — a repository path for the Reversa side, a Technical Specification section for the Blitzy side, or a fully identified arXiv paper for external corroboration. Wherever a capability exists on one side but not the other, the missing side is written explicitly as *"not present in provided inputs"* rather than inferred.
+
+A material constraint is stated up front and honored throughout: **the two *rendered* ArduPilot artifacts were not provided as inputs.** The comparison therefore proceeds at the **methodology / capability level**. It is grounded in Reversa's own product source and in a genuine Blitzy Technical Specification. These are **limited methodology/format references**, not the rendered outputs themselves: they establish each side's intended output *format* and *method*, but they do **not** evidence the actual quality, completeness, or execution fidelity of any rendered ArduPilot output. Verdict confidence is bounded accordingly. Every point that would require ArduPilot line-level evidence is deferred to **Appendix B — Gap Register** and marked 🔴, never fabricated.
+
+At the methodology/capability level, the analysis finds the following. Reversa leads on traceability granularity, implicit-knowledge extraction, gap transparency, and machine-oriented reusability. The two are near-parity on architectural visualization. Blitzy leads on single-artifact executive readability. On the validation dimension, Blitzy leads on *documented validation-planning* coverage — it ships a Testing Strategy section — rather than on live runtime execution; **neither** absent artifact evidences live ArduPilot execution for **either** side. A real, evidenced balancing point is recorded for **every** dimension.
 
 ---
 
@@ -20,7 +25,7 @@
   - [Dimension 6 — Output granularity and reusability](#dimension-6--output-granularity-and-reusability)
 - [Part 3 — Consolidated Balance & Limitations Table](#part-3--consolidated-balance--limitations-table)
 - [Part 4 — "Reversa-Manner" Supplementary Documentation](#part-4--reversa-manner-supplementary-documentation)
-- [Appendix A — Evidence Citation Index](#appendix-a--evidence-citation-index)
+- [Appendix A — Evidence Citation Index & Claim-Level Audit](#appendix-a--evidence-citation-index--claim-level-audit)
 - [Appendix B — Gap Register](#appendix-b--gap-register)
 
 ---
@@ -38,16 +43,16 @@ The comparison is confined to these two artifacts for ArduPilot only. It does **
 
 ### 0.2 The input gap (stated up front, honored throughout)
 
-The two **rendered** ArduPilot artifacts named above are **not present in the provided inputs.** This was verified exhaustively: there is no Reversa `_reversa_sdd/` ArduPilot tree, no Blitzy ArduPilot Technical Specification document, and **zero** occurrences of the string "ardupilot" anywhere in the materials provided. The repository actually checked out is **Reversa's own product source code** — the framework that *produces* `_reversa_sdd/` trees — not the ArduPilot subject codebase and not either rendered artifact.
+The two **rendered** ArduPilot artifacts named above are **not present in the provided inputs.** This was verified by inspecting the baseline repository and the attachment set: no Reversa `_reversa_sdd/` ArduPilot tree and no Blitzy ArduPilot Technical Specification document were found in the checked-out repository, and **no attachments were supplied.** The repository actually checked out is **Reversa's own product source code** — the framework that *produces* `_reversa_sdd/` trees — not the ArduPilot subject codebase and not either rendered artifact. (ArduPilot is named repeatedly in the task framing and in this document as the *subject* the comparison targets; the point here is narrower — that no *rendered ArduPilot output* from either product is present to inspect.)
 
-Consistent with the no-fabrication rule (§0.4), this absence is treated as a **documented input gap, not a blocker.** The comparison is conducted at the **methodology / capability level**, using authoritative proxies for each side:
+Consistent with the no-fabrication rule (§0.4), this absence is treated as a **documented input gap, not a blocker.** The comparison is conducted at the **methodology / capability level**, using the following **limited methodology/format references** for each side. Each reference establishes intended *format and method*; none is a substitute for the rendered output, and none can attest to the actual quality, completeness, or execution fidelity of a real ArduPilot run:
 
-| Side | Authoritative proxy used | Why it is a valid proxy |
-|------|--------------------------|--------------------------|
-| **Reversa** | The in-repository methodology files listed in §0.3 (README, output taxonomy, and the per-agent `SKILL.md` specifications) | These files *define exactly what Reversa produces and how* — the confidence scale, the `_reversa_sdd/` file taxonomy, and each agent's output contract. They are a faithful proxy for the *shape and discipline* of any Reversa ArduPilot output. |
-| **Blitzy** | *This* Technical Specification (a genuine Blitzy artifact) | A real Blitzy Technical Specification exemplifies Blitzy's output *format and conventions* — its Requirements Traceability Matrix, architecture sections, and enterprise-breadth sections — and is a faithful proxy for the *shape and discipline* of a Blitzy ArduPilot output. |
+| Side | Methodology/format reference used | What it does — and does not — establish |
+|------|-----------------------------------|------------------------------------------|
+| **Reversa** | The in-repository methodology files listed in §0.3 (README, output taxonomy, and the per-agent `SKILL.md` specifications) | **Does:** *defines what Reversa produces and how* — the confidence scale, the `_reversa_sdd/` file taxonomy, and each agent's output contract, i.e. the intended *format and method* of any Reversa ArduPilot output. **Does not:** demonstrate the actual quality, completeness, or execution fidelity of a rendered ArduPilot output. |
+| **Blitzy** | *This* Technical Specification (a genuine Blitzy artifact) | **Does:** exemplify Blitzy's output *format and conventions* — its Requirements Traceability Matrix, architecture sections, and enterprise-breadth sections, i.e. the intended *format and method* of a Blitzy ArduPilot output. **Does not:** demonstrate the actual quality, completeness, or execution fidelity of the specific rendered ArduPilot document. |
 
-Every claim that would require **ArduPilot line-level evidence** (for example, "the ArduPilot ERD has N entities" or "coverage on the actual ArduPilot outputs was X%") is **out of reach from the provided inputs** and is recorded in **Appendix B — Gap Register** as a 🔴 GAP. No such claim is invented.
+Every claim that would require **ArduPilot line-level evidence** — for example, "the ArduPilot ERD has N entities" or "coverage on the actual ArduPilot outputs was X%" — is **out of reach from the provided inputs.** Each such claim is recorded in **Appendix B — Gap Register** as a 🔴 GAP, never invented.
 
 ### 0.3 Citation conventions
 
@@ -55,7 +60,8 @@ Every comparative claim in this document carries a citation resolving to a check
 
 - **Reversa side → a repository path**, optionally with a section or line reference. Examples: `[agents/reversa-writer/SKILL.md]`, `[README.md:§Confidence scale]`, `[templates/plan.md:L56]`.
 - **Blitzy side → a Technical Specification section**, e.g. `[Tech Spec §2.5]`. The Blitzy-side sections referenced in this document are drawn from the set §1.1, §1.3, §2.5, §4.1, §4.8, §5.1, §6.2, §6.4, §6.5, §6.6, §8.6, §9.1.
-- **External corroboration → an arXiv identifier or "third-party tutorial"**, e.g. `[arXiv 2605.18684]`, `[arXiv 2606.04967]`, `[third-party tutorial]`.
+- **External corroboration → a fully identified arXiv paper**: `[arXiv 2605.18684]` (Macedo & da Costa, *Reversa*, 18 May 2026) and `[arXiv 2606.04967]` (Macedo, *From Prompt to Process*, 3 Jun 2026). A source that cannot be identified with checkable metadata (title, author, venue/URL) is **not cited**; its underlying point is instead grounded in an in-repository path or labeled explicitly as **evaluator inference**.
+- **Evaluator inference → an explicit "Evaluator inference" label**, distinguishing the analyst's reasoned assessment from a source-confirmed fact.
 - **Absent input → the tag 🔴 GAP (input absent)** plus an entry in Appendix B.
 
 The Reversa-side repository sources are authored partly in Portuguese; all quotations from them below are faithful English translations kept deliberately short.
@@ -68,7 +74,7 @@ Three rules govern every sentence that follows:
 2. **One-sided silence is stated explicitly.** Where a capability exists on one side and the other side is silent in the provided inputs, the text reads *"not present in provided inputs"* — never an inference dressed as fact. This mirrors Reversa's own 🔴 GAP convention `[README.md:§Confidence scale]`.
 3. **Balance is mandatory.** Each dimension names at least one real, evidenced Blitzy advantage **or** Reversa limitation; no "stronger/better" statement is allowed to stand without a checkable counter-point.
 
-All ArduPilot-specific, line-level assertions are deferred to Appendix B. The body of this document compares **methodologies and capabilities**, which the provided proxies fully support.
+All ArduPilot-specific, line-level assertions are deferred to Appendix B. The body of this document compares **methodologies and capabilities** — the aspect the provided references can legitimately support. It does **not** assert the actual quality, completeness, execution fidelity, or ArduPilot-specific performance of any rendered output; those remain open questions recorded in Appendix B.
 
 ---
 
@@ -76,14 +82,16 @@ All ArduPilot-specific, line-level assertions are deferred to Appendix B. The bo
 
 ### 1.1 Headline verdict
 
-Both artifacts do the same job — turn an undocumented legacy system into a specification a team (or an AI agent) can act on — but they optimize for **different consumers**. **Reversa optimizes the documentation for machines and migration engineers**: it fragments the system into many small, individually addressable files, tags every single claim with a confidence level, and ships an explicit register of what it does not know. **Blitzy optimizes the documentation for people and enterprise delivery**: it consolidates everything into one navigable Technical Specification and pairs the description of the system with the enterprise concerns a delivery organization is judged on — security, monitoring, testing, and CI/CD.
+> **Note on this section.** Parts 1.1–1.5 are the account team's **analytical synthesis** of the dimension-by-dimension evidence in Part 2. Statements about buyer fit, usability, and market dynamics are the team's **reasoned judgment** — basis: the artifact structure and methodology observed in the provided inputs; limitation: not validated against a *rendered* ArduPilot run. Source-confirmed facts carry citations; claims that are judgment rather than cited fact are framed as such.
+
+Both artifacts do the same job — turn an undocumented legacy system into a specification a team (or an AI agent) can act on — but, in the account team's assessment, they optimize for **different consumers**. **Reversa's documentation is oriented toward machines and migration engineers**: it fragments the system into many small, individually addressable files, tags every single claim with a confidence level, and ships an explicit register of what it does not know `[README.md:§Confidence scale]` `[agents/reversa-writer/SKILL.md]`. **Blitzy's documentation is oriented toward people and enterprise delivery**: it consolidates everything into one navigable Technical Specification and pairs the system description with enterprise-delivery concerns — security, monitoring, testing, and CI/CD `[Tech Spec §6.4]` `[Tech Spec §6.5]` `[Tech Spec §6.6]` `[Tech Spec §8.6]`.
 
 **One-line positioning of each product:**
 
 - **Reversa** — an open-source (MIT) reverse-**documentation** framework that installs inside a legacy project and coordinates a team of AI agents to emit a traceable, confidence-tagged, multi-file specification tree (`_reversa_sdd/`) `[README.md]` `[arXiv 2605.18684]`.
-- **Blitzy** — a platform that produces a single, consolidated, enterprise-grade Technical Specification, integrating the system description with a Requirements Traceability Matrix and the security/monitoring/testing/CI-CD breadth needed to actually deliver `[Tech Spec §2.5]` `[Tech Spec §6.4]` `[Tech Spec §6.5]` `[Tech Spec §6.6]` `[Tech Spec §8.6]`.
+- **Blitzy** — a platform that produces a single, consolidated, enterprise-grade Technical Specification, integrating the system description with a Requirements Traceability Matrix and dedicated security/monitoring/testing/CI-CD sections `[Tech Spec §2.5]` `[Tech Spec §6.4]` `[Tech Spec §6.5]` `[Tech Spec §6.6]` `[Tech Spec §8.6]`.
 
-The honest, one-sentence takeaway for an account conversation: **Reversa's documentation is more granular, more self-aware about its own uncertainty, and more reusable piece-by-piece; Blitzy's documentation is more readable as a single executive artifact and broader in enterprise-delivery coverage — and each of those strengths comes with a real, checkable caveat.**
+The honest takeaway for an account conversation is short. **Reversa's documentation is more granular, more self-aware about its own uncertainty, and more reusable piece-by-piece.** **Blitzy's documentation is more readable as a single executive artifact and broader in enterprise-delivery coverage.** Each of those strengths comes with a real, checkable caveat.
 
 ### 1.2 Per-dimension headline table
 
@@ -92,9 +100,9 @@ The honest, one-sentence takeaway for an account conversation: **Reversa's docum
 | 1 | Traceability of claims to source | **Reversa** | Per-claim 🟢/🟡/🔴 tags + a `code-spec-matrix.md` mapping every file to its spec `[agents/reversa-writer/SKILL.md]` | Blitzy's Requirements Traceability Matrix links requirement→design→implementation coherently in one place `[Tech Spec §2.5]`; Reversa's per-claim tags are only as reliable as the host agent applying them `[README.md]` |
 | 2 | Architectural visualization | **Near-parity** | Reversa formalizes the C4 triad + full ERD explicitly `[agents/reversa-architect/SKILL.md]` | Blitzy pairs architecture with workflow, state-transition, and DB-design diagrams in one consolidated doc — broader diagram coverage per artifact `[Tech Spec §5.1]` `[Tech Spec §4.1]` `[Tech Spec §4.8]` `[Tech Spec §6.2]` |
 | 3 | Implicit business-knowledge extraction | **Reversa** | Dedicated retroactive ADRs (via Git archaeology), `state-machines.md`, `permissions.md` `[agents/reversa-detective/SKILL.md]` | Reversa itself warns this content is largely 🟡 INFERRED — inference is not fact `[agents/reversa-detective/SKILL.md]` |
-| 4 | Gap transparency | **Reversa** | Severity-tiered `gaps.md` + `questions.md` + `confidence-report.md` `[agents/reversa-reviewer/SKILL.md]` | An independent taxonomy rates Reversa as **only partial validation** — labeling a gap is not resolving it `[arXiv 2606.04967]` |
-| 5 | Runtime / dynamic validation | **Blitzy** | Blitzy ships a Testing Strategy `[Tech Spec §6.6]`; Reversa's "Tracer" is referenced but unimplemented and it emits parity **specs, not executable tests** `[templates/plan.md:L56]` `[agents/reversa-inspector/SKILL.md]` | Reversa's Gherkin parity specs are a genuine, reusable head-start for a migration team even without live execution `[agents/reversa-inspector/SKILL.md]` |
-| 6 | Output granularity & reusability | **Split** | Reversa's ~15+ files + folder-per-unit favor selective machine reuse `[README.md:§What is generated]` | One consolidated document is easier to review, version, and hand to an executive — many files raise navigation/drift overhead `[Tech Spec §1.1]` |
+| 4 | Gap transparency | **Reversa** | Severity-tiered `gaps.md` + `questions.md` + `confidence-report.md` `[agents/reversa-reviewer/SKILL.md]` | *Evaluator analysis:* labeling a gap documents uncertainty but does not resolve it — resolution still needs human validation `[agents/reversa-reviewer/SKILL.md]`. A process-taxonomy paper (by Reversa's own first author) finds no framework strongly covers all six of its dimensions `[arXiv 2606.04967]` |
+| 5 | Runtime / dynamic validation *(documented planning)* | **Blitzy** | Blitzy ships a **Testing Strategy** section — documented test *planning*, not runtime execution `[Tech Spec §6.6]`; Reversa's "Tracer" has no implementation in this repo snapshot, and its shipped validation output is parity **specs, not executable tests** `[templates/plan.md:L56]` `[agents/reversa-inspector/SKILL.md]` | Reversa's Gherkin parity specs are a genuine, reusable head-start a coding agent can translate into executable tests; *neither side evidences live ArduPilot execution* (Appendix B) `[agents/reversa-inspector/SKILL.md]` |
+| 6 | Output granularity & reusability | **Split** | Reversa's ~15+ top-level artifacts + folder-per-unit favor selective machine reuse `[README.md:§What is generated]` | *Evaluator inference:* one consolidated document tends to be easier to review, version, and hand to an executive, while many files raise navigation/drift overhead `[Tech Spec §1.1]` |
 
 ### 1.3 Account-management talking points
 
@@ -102,12 +110,12 @@ The honest, one-sentence takeaway for an account conversation: **Reversa's docum
 
 - **Traceability granularity.** Reversa marks *every statement* in a spec with a confidence level and maintains a file-by-file `code-spec-matrix.md` that flags any legacy file lacking a spec as `n/a` `[agents/reversa-writer/SKILL.md]`. For a customer whose primary anxiety is "can I trust this, and what is *not* covered?", this per-claim, per-file granularity is a strong, demonstrable answer.
 - **Gap transparency.** Reversa produces a dedicated `gaps.md` (categorized by severity at the deepest documentation level), a `questions.md` human-validation queue, and a `confidence-report.md` that counts 🟢/🟡/🔴 marks and reports an overall confidence percentage `[agents/reversa-reviewer/SKILL.md]`. This is a differentiator worth naming explicitly, because most documentation tools present only what they *know*, never a structured ledger of what they *don't*.
-- **Artifact reusability.** The `_reversa_sdd/` tree is ~15+ discrete files plus folder-per-unit specs, tiered by documentation level `[README.md:§What is generated]` `[docs/saidas/index.md]`. A migration team can pick up exactly the `state-machines.md` or one unit's `contracts.md` it needs, without wading through a 200-page document.
+- **Artifact reusability.** The `_reversa_sdd/` tree is ~15+ discrete top-level files plus folder-per-unit specs, tiered by documentation level `[README.md:§What is generated]` `[docs/saidas/index.md]`. A migration team can pick up exactly the `state-machines.md` or one unit's `contracts.md` it needs, without traversing the entire consolidated document.
 
 **Where Blitzy is stronger or on par — and why it resonates with buyers and executives:**
 
-- **Single-artifact readability.** Blitzy delivers one consolidated Technical Specification. For an executive review, a procurement package, or a hand-off to a delivery lead, "one document, versioned once, read top to bottom" is a genuine usability advantage over a 15-folder tree `[Tech Spec §1.1]`.
-- **Enterprise breadth.** Blitzy's specification carries dedicated Security `[Tech Spec §6.4]`, Monitoring & Observability `[Tech Spec §6.5]`, Testing Strategy `[Tech Spec §6.6]`, and CI/CD Pipeline `[Tech Spec §8.6]` sections. Reversa's shipped output is a *specification* of the system; it does not, in the provided inputs, produce an equivalent operational/DevOps envelope. For enterprise accounts this breadth is often the deciding factor.
+- **Single-artifact readability.** Blitzy delivers one consolidated Technical Specification. *Evaluator inference:* for an executive review, a procurement package, or a hand-off to a delivery lead, "one document, versioned once, read top to bottom" tends to be a usability advantage over a many-file tree (~15+ artifacts plus subfolders) `[Tech Spec §1.1]` `[README.md:§What is generated]`.
+- **Enterprise breadth.** Blitzy's specification carries dedicated Security `[Tech Spec §6.4]`, Monitoring & Observability `[Tech Spec §6.5]`, Testing Strategy `[Tech Spec §6.6]`, and CI/CD Pipeline `[Tech Spec §8.6]` sections. Reversa's shipped output is a *specification* of the system; it does not, in the provided inputs, produce an equivalent operational/DevOps envelope `[README.md:§What is generated]`. *Account-team judgment:* for enterprise accounts this breadth is frequently decisive (a reasoned assessment, not a measured outcome).
 - **Coherent requirements traceability.** Blitzy's Requirements Traceability Matrix ties requirements to design to implementation inside a single navigable structure `[Tech Spec §2.5]`. Reversa's traceability is *finer-grained* but *distributed* across files; Blitzy's is *coarser-grained* but *cohesive*. Which is "better" depends entirely on the consumer — a point worth making explicitly to a client rather than conceding the whole dimension.
 
 **How to hold the line credibly (the balanced pitch).** The strongest account posture is not "we win every dimension"; it is "we understand exactly where each approach is strong and we are honest about the trade-offs." Concede Reversa's genuine strengths in traceability granularity, gap transparency, and reuse. Then anchor Blitzy on readability and enterprise breadth, and note Reversa's own, publicly documented limitations (§1.6). A balanced, evidence-cited posture is far more persuasive to a technical evaluator than an unqualified superiority claim — and it is exactly the posture Reversa's own authors adopt about their framework `[arXiv 2605.18684]`.
@@ -122,32 +130,32 @@ The following six-criterion rubric is a practical tool for account conversations
 | **Completeness** | Coverage is measurable, not assumed | Add a **code↔spec coverage matrix** listing files and marking uncovered ones, per Reversa's `code-spec-matrix.md` `[agents/reversa-writer/SKILL.md]` | Enterprise sections (security/monitoring/testing/CI-CD) make delivery-completeness visible `[Tech Spec §6.4]` `[Tech Spec §8.6]` |
 | **Accuracy** | Uncertainty is labeled, not hidden | Distinguish **confirmed vs. inferred** statements explicitly, as Reversa does `[README.md:§Confidence scale]` | A single consolidated source reduces the cross-file contradiction risk inherent in a many-file tree |
 | **Readability** | An executive can consume it quickly | (Blitzy already leads here) | **Single consolidated executive-readable artifact** — the core Blitzy advantage on this criterion `[Tech Spec §1.1]` |
-| **Reusability** | Consumers can extract just what they need | Offer an optional **section-addressable export** so downstream agents can pull one unit, echoing Reversa's folder-per-unit layout `[agents/reversa-writer/SKILL.md]` | The single-document form is trivially versioned and distributed as one file |
-| **Maintainability** | Updates don't cause drift | (Blitzy already leads here) | One document has **one source of truth**; a 15-folder tree risks cross-file drift `[README.md:§What is generated]` |
+| **Reusability** | Consumers can extract just what they need | Offer an optional **section-addressable export** so downstream agents can pull one unit, echoing Reversa's folder-per-unit layout `[agents/reversa-writer/SKILL.md]` | The single-document form is versioned and distributed as one file (*evaluator inference:* this simplifies distribution) |
+| **Maintainability** | Updates don't cause drift | (Blitzy already leads here) | *Evaluator inference:* one document keeps a single source of truth, whereas a many-file tree (~15+ artifacts plus subfolders) raises the risk of cross-file drift `[README.md:§What is generated]` |
 
-The reciprocal guidance — what Reversa's *manner* could adopt from Blitzy — is a **single consolidated executive view** layered on top of the file tree, so that a non-technical stakeholder is not asked to navigate `_reversa_sdd/`'s ~15+ files and subfolders to form a top-level understanding `[README.md:§What is generated]`.
+The reciprocal guidance — what Reversa's *manner* could adopt from Blitzy — is a **single consolidated executive view** layered on top of the file tree. That way, a non-technical stakeholder is not asked to navigate `_reversa_sdd/`'s ~15+ files and subfolders just to form a top-level understanding `[README.md:§What is generated]`.
 
 ### 1.5 Reading the six dimensions as one story (usability, readability, detail)
 
 Stepping back from the individual dimensions, the six findings tell one coherent story that an AE can carry into a client conversation. The story is about **who the documentation is *for*.**
 
-**On usability.** Reversa's usability advantage is for a *technical* consumer: a migration engineer or a downstream coding agent that wants to open exactly one artifact — a single unit's `contracts.md`, or the `permissions.md` matrix — and act on it, without reading anything else `[agents/reversa-writer/SKILL.md]` `[README.md:§What is generated]`. Blitzy's usability advantage is for a *decision-making* consumer: an executive, a procurement reviewer, or a delivery lead who wants the whole picture in one pass and a single file to circulate and version `[Tech Spec §1.1]`. Neither is "more usable" in the abstract; each is more usable *for its intended reader*. The account-management recommendation follows directly: match the artifact form to the buyer's role. When the buyer is an engineering organization mid-migration, Reversa's granularity is a feature; when the buyer is an executive sponsor or a mixed committee, Blitzy's single consolidated artifact is the easier sell.
+**On usability.** Reversa's usability advantage is for a *technical* consumer. A migration engineer or a downstream coding agent wants to open exactly one artifact — a single unit's `contracts.md`, or the `permissions.md` matrix — and act on it, without reading anything else `[agents/reversa-writer/SKILL.md]` `[README.md:§What is generated]`. Blitzy's usability advantage is for a *decision-making* consumer: an executive, a procurement reviewer, or a delivery lead who wants the whole picture in one pass and a single file to circulate and version `[Tech Spec §1.1]`. Neither is "more usable" in the abstract; each is more usable *for its intended reader*. The account-management recommendation follows directly: match the artifact form to the buyer's role. When the buyer is an engineering organization mid-migration, Reversa's granularity is a feature; when the buyer is an executive sponsor or a mixed committee, Blitzy's single consolidated artifact is the easier sell.
 
-**On readability.** Readability is where Blitzy has the clearest, most defensible edge. A single, coherent Technical Specification with a Requirements Traceability Matrix connecting requirements to design to implementation reads as one narrative `[Tech Spec §2.5]` `[Tech Spec §1.1]`. A 15+-file tree with ten subfolders `[README.md:§What is generated]` requires the reader to assemble the narrative themselves — powerful for a machine, taxing for a human skim. The honest counter-point, which the AE should volunteer rather than hide, is that Reversa's per-claim confidence tags actually *aid* a careful technical reader's trust even as the multi-file layout costs a casual reader's speed `[README.md:§Confidence scale]`. Readability, in other words, is not one axis but two — *skim-readability* (Blitzy leads) and *trust-readability* (Reversa's confidence marks help).
+**On readability.** Readability is where Blitzy has the clearest, most defensible edge. A single, coherent Technical Specification with a Requirements Traceability Matrix connecting requirements to design to implementation reads as one narrative `[Tech Spec §2.5]` `[Tech Spec §1.1]`. A many-file tree (~15+ top-level artifacts plus subfolders, the exact set varying by documentation level) `[README.md:§What is generated]` `[docs/saidas/index.md]` requires the reader to assemble the narrative themselves — in the evaluator's assessment, powerful for a machine but taxing for a human skim. The honest counter-point, which the AE should volunteer rather than hide, is that Reversa's per-claim confidence tags actually *aid* a careful technical reader's trust even as the multi-file layout costs a casual reader's speed `[README.md:§Confidence scale]`. Readability, in other words, is not one axis but two — *skim-readability* (Blitzy leads) and *trust-readability* (Reversa's confidence marks help).
 
 **On detail.** On raw detail, Reversa's methodology is designed to go deeper: folder-per-unit specs, retroactive ADRs, per-entity state machines, and an RBAC/ACL matrix are all discrete, dedicated artifacts `[agents/reversa-detective/SKILL.md]` `[agents/reversa-writer/SKILL.md]`. Blitzy's detail is broad rather than deep-per-artifact: it spans security, monitoring, testing, and CI/CD in one document `[Tech Spec §6.4]` `[Tech Spec §6.5]` `[Tech Spec §6.6]` `[Tech Spec §8.6]`. The credible framing is not "more detail" versus "less detail" but **depth-per-topic (Reversa) versus breadth-of-topics (Blitzy)** — and the buyer's priorities decide which matters more. A team that needs to reimplement one subsystem faithfully values Reversa's depth; an organization standing up an end-to-end delivery pipeline values Blitzy's breadth.
 
-**The synthesized recommendation for client-facing documentation.** The most actionable guidance the account team can give a client is to borrow the best of both manners: keep Blitzy's single-artifact, executive-readable spine, and layer onto it the three cheap, high-signal Reversa habits — per-claim confidence tags, an explicit gap register, and a code↔spec coverage matrix `[README.md:§Confidence scale]` `[agents/reversa-reviewer/SKILL.md]` `[agents/reversa-writer/SKILL.md]`. Those three additions raise trust and completeness without sacrificing the readability that makes a consolidated document easy to consume and circulate.
+**The synthesized recommendation for client-facing documentation.** The most actionable guidance the account team can give a client is to borrow the best of both manners. Keep Blitzy's single-artifact, executive-readable spine, and layer onto it three low-overhead Reversa habits: per-claim confidence tags, an explicit gap register, and a code↔spec coverage matrix `[README.md:§Confidence scale]` `[agents/reversa-reviewer/SKILL.md]` `[agents/reversa-writer/SKILL.md]`. *Evaluator inference:* those three additions would raise trust and completeness without sacrificing the readability that makes a consolidated document easy to consume and circulate.
 
 ### 1.6 Honest limitations and the scope of this comparison
 
 Credibility requires stating the boundaries of this analysis and Reversa's own documented limitations:
 
 - **This comparison is methodology/capability-level.** Because the *rendered* ArduPilot artifacts were not provided, no ArduPilot-specific quantitative claim (actual file counts, coverage percentages, diagram counts on the real outputs) is made here; all such points are recorded in Appendix B as 🔴 GAP.
-- **Reversa produces no executable code or tests.** Its Inspector agent is explicit that its `.feature` artifacts are *"specs, not executable tests"* `[agents/reversa-inspector/SKILL.md]`.
-- **Reversa's validation is only partial.** An independent taxonomy classifies Reversa as strong in context and specification but with only partial validation, via confidence and gap labels `[arXiv 2606.04967]`.
-- **Reversa's output quality is bounded by the host AI agent.** Reversa stores and transmits no LLM API keys and delegates all intelligence to the coding agent already present, so the quality ceiling is the host agent's `[README.md]` `[third-party tutorial]`.
-- **Reversa is an MIT CLI with no enterprise SLA.** It ships as an open-source npm package with four runtime dependencies and no build/test tooling `[package.json]` — appropriate for its purpose, but not an enterprise-supported platform.
+- **Reversa's *Inspector* emits parity specifications, not executable tests.** The Inspector is explicit that its `.feature` artifacts are *"specs, not executable tests"* `[agents/reversa-inspector/SKILL.md]`. This is a **narrow, accurate claim about the Inspector's parity artifacts** — *not* a product-wide "no code" claim: Reversa's broader product *does* include code-producing workflows (the Reconstructor implements tasks and emits code files `[agents/reversa-reconstructor/SKILL.md]`, and the `/reversa-forward` flow evolves specs into running code `[README.md]`).
+- **Reversa's shipped behavioral validation is documentation, not execution.** Its validation output is the Inspector's Gherkin parity *specs* `[agents/reversa-inspector/SKILL.md]`. *Evaluator analysis:* specifying expected parity documents behavior but does not, by itself, execute or resolve it. A process-taxonomy paper — authored by Reversa's own first author — assesses six frameworks (including Reversa) across six dimensions (specification, context, roles, execution, validation, portability) and concludes that **no framework strongly covers all six** `[arXiv 2606.04967]`.
+- **Reversa delegates all reasoning to the host AI agent.** It stores and transmits no LLM API keys and relies on the coding agent already present `[README.md]`. *Evaluator inference:* output quality is therefore *influenced by* the host agent's capability — alongside source-code quality, orchestration, prompts, and human validation — a risk to flag rather than a hard, source-stated quality ceiling.
+- **No enterprise SLA is evidenced in the provided inputs.** Reversa ships as an MIT-licensed npm package with four runtime dependencies and no build/test scripts `[package.json]` `[README.md]`. This is an *absence of evidence in the inputs* — appropriate for the tool's purpose — not proof that no support offering exists.
 - **Reversa's authors disclaim superiority.** The framework paper positions Reversa as a framework, an evaluation protocol, and a first exploratory evidence point — explicitly **not** a proof of superiority over other approaches `[arXiv 2605.18684]`. Quoting the authors' own restraint is a powerful, honest talking point.
 
 **Bottom line for the AE team:** lead with honesty. Reversa is a credible, well-designed, open framework whose documentation is finer-grained and more self-aware; Blitzy's documentation is more consolidated, more executive-ready, and broader in enterprise delivery coverage. Every one of those statements is cited above and re-cited, with counter-points, in Parts 2 and 3.
@@ -157,7 +165,7 @@ Credibility requires stating the boundaries of this analysis and Reversa's own d
 
 ## Part 2 — Dimension-by-Dimension Comparison
 
-Each subsection below follows the same fixed structure: **(i)** the Reversa mechanism with citation; **(ii)** the Blitzy mechanism with citation (or an explicit *"not present in provided inputs"*); **(iii)** a **Verdict**; and **(iv)** a **Balance point** — a real, evidenced Blitzy advantage or Reversa limitation. All ArduPilot-specific quantitative claims are deferred to Appendix B.
+Each subsection below follows the same fixed structure: **(i)** the Reversa mechanism with citation; **(ii)** the Blitzy mechanism with citation (or an explicit *"not present in provided inputs"*); **(iii)** a **Verdict**; and **(iv)** a **Balance point**. The balance point is a real, evidenced Blitzy advantage or Reversa limitation. All ArduPilot-specific quantitative claims are deferred to Appendix B.
 
 ### Dimension 1 — Traceability of claims to source
 
@@ -167,11 +175,11 @@ Each subsection below follows the same fixed structure: **(i)** the Reversa mech
 
 **Verdict.** **Reversa is stronger on *granularity*.** Reversa traces at the level of the individual *claim* (file + line + confidence) and the individual *file* (coverage matrix), whereas Blitzy's RTM traces at the level of *requirements and sections*. For a consumer who needs to know the provenance and confidence of a single assertion, Reversa's mechanism is finer.
 
-**Balance point (Blitzy advantage + Reversa limitation).** Blitzy's RTM ties requirement→design→implementation together **coherently inside one navigable document** `[Tech Spec §2.5]`, whereas Reversa's traceability, though finer, is distributed across many files and matrices. Moreover, Reversa's per-claim tags are only as reliable as the host AI agent applying them — Reversa delegates all intelligence to the agent already present and stores no keys, so the accuracy of every 🟢/🟡/🔴 mark is bounded by that host `[README.md]` `[third-party tutorial]`.
+**Balance point (Blitzy advantage + Reversa limitation).** Blitzy's RTM ties requirement→design→implementation together **coherently inside one navigable document** `[Tech Spec §2.5]`, whereas Reversa's traceability, though finer, is distributed across many files and matrices. Moreover, Reversa delegates all intelligence to the host coding agent already present and stores no LLM keys `[README.md]`. *Evaluator inference:* the accuracy of each 🟢/🟡/🔴 mark is therefore *influenced by* that host agent's capability, so the per-claim tags are a discipline whose reliability depends on the environment applying them — not a source-stated guarantee.
 
 ### Dimension 2 — Architectural visualization
 
-**Reversa mechanism.** The Architect agent produces the **C4 triad** in Mermaid — **Context** (Level 1), **Containers** (Level 2), and **Components** (Level 3) — plus a **full Entity-Relationship Diagram** (all entities and attributes, relationships with cardinalities 1:1 / 1:N / N:M, and primary/foreign keys), an external-integration map, a technical-debt inventory, and a `traceability/spec-impact-matrix.md` capturing "blast radius" `[agents/reversa-architect/SKILL.md]` `[docs/saidas/index.md]`. Diagram depth scales with the configured documentation level. A third-party walkthrough corroborates that Reversa emits C4 diagrams, ERDs, and state machines `[third-party tutorial]`.
+**Reversa mechanism.** The Architect agent produces the **C4 triad** in Mermaid — **Context** (Level 1), **Containers** (Level 2), and **Components** (Level 3) `[agents/reversa-architect/SKILL.md]`. Alongside the triad it emits a **full Entity-Relationship Diagram** (all entities and attributes, relationships with cardinalities 1:1 / 1:N / N:M, and primary/foreign keys), an external-integration map, a technical-debt inventory, and a `traceability/spec-impact-matrix.md` capturing "blast radius" `[docs/saidas/index.md]`. Diagram depth scales with the configured documentation level `[agents/reversa-architect/SKILL.md]`.
 
 The C4 **Context** manner — the single most executive-legible of the three C4 levels — looks like this (illustrative, generic; not ArduPilot data):
 
@@ -192,36 +200,36 @@ flowchart TB
 
 **Verdict.** **Near-parity.** Reversa's distinctive contribution is that it **formalizes the C4 taxonomy explicitly** (context/containers/components as named, separate artifacts) `[agents/reversa-architect/SKILL.md]`, which is cleaner for an architecture-literate reader. Blitzy covers the same conceptual ground (architecture, workflow, state, data) without necessarily labeling it "C4."
 
-**Balance point (Blitzy advantage).** Blitzy pairs architecture with **workflow + state-transition + database-design diagrams in a single consolidated document** `[Tech Spec §5.1]` `[Tech Spec §4.1]` `[Tech Spec §4.8]` `[Tech Spec §6.2]` — arguably **broader diagram coverage per artifact**, and easier to consume because the reader never leaves the document to assemble the architectural picture from separate files.
+**Balance point (Blitzy advantage).** *Source fact:* Blitzy pairs architecture with **workflow + state-transition + database-design diagrams in a single consolidated document** `[Tech Spec §5.1]` `[Tech Spec §4.1]` `[Tech Spec §4.8]` `[Tech Spec §6.2]` — broader diagram *coverage per artifact*. *Evaluator inference:* consolidating them tends to be easier to consume because the reader never leaves the document to assemble the architectural picture from separate files.
 
 ### Dimension 3 — Implicit business-knowledge extraction
 
-**Reversa mechanism.** The Detective agent specializes in the *why* — the knowledge that lives between the lines of the code. It produces **retroactive Architecture Decision Records via Git archaeology** (mining `git log` for decisions, fixes, refactors, and reverts), a **`state-machines.md`** (for each entity with a status field: the allowed values, the permitted transitions and their triggers, and a Mermaid diagram), and a **`permissions.md`** RBAC/ACL matrix (roles, per-role permissions, and access restrictions). A `domain.md` glossary of business rules is always produced. At the deepest documentation level, each ADR includes the established "Alternatives considered" and "Consequences" sections `[agents/reversa-detective/SKILL.md]`. Preservation of implicit rules is corroborated as core to the framework `[arXiv 2605.18684]`.
+**Reversa mechanism.** The Detective agent specializes in the *why* — the knowledge that lives between the lines of the code. It produces **retroactive Architecture Decision Records via Git archaeology**, mining `git log` for decisions, fixes, refactors, and reverts. It also emits a **`state-machines.md`** (for each entity with a status field: the allowed values, the permitted transitions and their triggers, and a Mermaid diagram) and a **`permissions.md`** RBAC/ACL matrix (roles, per-role permissions, and access restrictions). A `domain.md` glossary of business rules is always produced. At the deepest documentation level, each ADR includes the established "Alternatives considered" and "Consequences" sections `[agents/reversa-detective/SKILL.md]`. Preservation of implicit rules is corroborated as core to the framework `[arXiv 2605.18684]`.
 
 **Blitzy mechanism.** Blitzy captures implicit knowledge primarily as **assumptions in its Additional Technical Information** section `[Tech Spec §9.1]`, consolidated rather than split into dedicated ADR / state-machine / permission artifacts.
 
-**Verdict.** **Reversa is stronger.** Dedicated, purpose-built artifacts (retroactive ADRs, `state-machines.md`, `permissions.md`) extract and organize implicit business knowledge more thoroughly and more addressably than a consolidated assumptions section `[agents/reversa-detective/SKILL.md]` vs `[Tech Spec §9.1]`.
+**Verdict.** **Reversa is stronger.** *Source fact:* Reversa produces dedicated, purpose-built artifacts (retroactive ADRs, `state-machines.md`, `permissions.md`) `[agents/reversa-detective/SKILL.md]`, whereas Blitzy consolidates comparable content into an assumptions section `[Tech Spec §9.1]`. *Evaluator inference:* dedicated artifacts tend to extract and organize implicit business knowledge more thoroughly and more addressably than a single consolidated section.
 
 **Balance point (Reversa limitation).** Reversa's own Detective specification cautions that this material is largely **🟡 INFERRED** — translated, *"be rigorous — much here will be 🟡"* `[agents/reversa-detective/SKILL.md]`. Inferred business knowledge is a hypothesis, not a fact; the very richness of these artifacts carries a higher share of unconfirmed content, which is precisely why Reversa pairs them with the confidence scale and gap register. Blitzy's consolidated assumptions, by contrast, are presented as explicitly *assumed*, reducing the risk that a reader mistakes inference for confirmed fact `[Tech Spec §9.1]`.
 
 
 ### Dimension 4 — Gap transparency
 
-**Reversa mechanism.** The Reviewer agent operates a dedicated gap-transparency machinery: **`questions.md`** (a queue of open 🔴 items requiring human validation), **`gaps.md`** (unresolved gaps; at the deepest documentation level **categorized by severity** — critical / moderate / cosmetic), and a **`confidence-report.md`** that counts the 🟢/🟡/🔴 marks per spec and reports an overall confidence percentage `[agents/reversa-reviewer/SKILL.md]`. An optional cross-review by a second engine can produce a `cross-review-result.md` `[agents/reversa-reviewer/SKILL.md]`. Preservation of gaps for human validation is one of the framework's three emphasized mechanisms `[arXiv 2605.18684]`.
+**Reversa mechanism.** The Reviewer agent operates a dedicated gap-transparency machinery built from three artifacts. **`questions.md`** is a queue of open 🔴 items requiring human validation. **`gaps.md`** records unresolved gaps — at the deepest documentation level **categorized by severity** (critical / moderate / cosmetic). A **`confidence-report.md`** counts the 🟢/🟡/🔴 marks per spec and reports an overall confidence percentage `[agents/reversa-reviewer/SKILL.md]`. An optional cross-review by a second engine can produce a `cross-review-result.md` `[agents/reversa-reviewer/SKILL.md]`. Preservation of gaps for human validation is one of the framework's three emphasized mechanisms `[arXiv 2605.18684]`.
 
 **Blitzy mechanism.** Blitzy expresses "what we don't know" through the **assumptions in its Additional Technical Information** section `[Tech Spec §9.1]`, rather than a separate severity-tiered gap register and validation queue.
 
 **Verdict.** **Reversa is stronger.** An explicit, severity-tiered gap register plus a human-validation queue and a quantified confidence report is a more structured and more actionable treatment of uncertainty than a consolidated assumptions section `[agents/reversa-reviewer/SKILL.md]` vs `[Tech Spec §9.1]`.
 
-**Balance point (Reversa limitation).** Labeling gaps is not the same as resolving them. An independent taxonomy paper classifies Reversa as strong in context and specification but with **only partial validation**, precisely *because* its validation is delivered via confidence and gap labels rather than by closing the gaps `[arXiv 2606.04967]`. A rich gap register documents uncertainty; it does not remove it — the resolution still depends on human validation.
+**Balance point (Reversa limitation).** *Evaluator analysis:* labeling gaps is not the same as resolving them — a rich gap register documents uncertainty but does not remove it, and Reversa's own Reviewer routes 🔴 items to a human-validation queue rather than closing them `[agents/reversa-reviewer/SKILL.md]`. For external context, a process-taxonomy paper — *From Prompt to Process*, authored by Reversa's own first author — assesses six frameworks (including Reversa) across six dimensions, one of which is *validation*, and concludes that **no framework strongly covers all six** `[arXiv 2606.04967]`. The paper is cited here only for that checkable, abstract-level finding, not for a Reversa-specific validation score.
 
 ### Dimension 5 — Runtime / dynamic validation
 
-**Reversa mechanism (stated precisely).** Reversa's exploration-plan template lists, under "Independent Agents," a **"Tracer — dynamic analysis (requires an accessible system)"** entry `[templates/plan.md:L56]`. **However, this Tracer is referenced but not implemented:** there is no `agents/reversa-tracer/` agent folder in the product source (verified against the full agent roster). Tracer is therefore **aspirational**, not a shipped capability, and it would be incorrect to claim Reversa performs live runtime tracing today. Reversa's **shipped** runtime/behavioral-validation output is the Inspector agent's **Gherkin parity specifications** — `parity_specs.md` and `parity_tests/*.feature` — which are explicitly **specifications, not executable tests**. The Inspector's rules, translated, are unambiguous: *"the artifacts produced are parity specs, not executable tests,"* and *".feature files are specs, not executable tests. Do not introduce framework calls."* The user's own coding agent later translates them into a real test framework `[agents/reversa-inspector/SKILL.md]`.
+**Reversa mechanism (stated precisely).** Reversa's exploration-plan template lists, under "Independent Agents," a **"Tracer — dynamic analysis (requires an accessible system)"** entry `[templates/plan.md:L56]`. **However, this Tracer is referenced but not implemented:** **no matching `agents/reversa-tracer/` folder was found in this repository snapshot** (verified against the full agent roster). Tracer is therefore **unimplemented in the provided inputs**, not a shipped capability, and it would be incorrect to claim Reversa performs live runtime tracing on this evidence. Reversa's **shipped** runtime/behavioral-validation output is the Inspector agent's **Gherkin parity specifications** — `parity_specs.md` and `parity_tests/*.feature` — which are explicitly **specifications, not executable tests**. The Inspector's rules, translated, are unambiguous: *"the artifacts produced are parity specs, not executable tests,"* and *".feature files are specs, not executable tests. Do not introduce framework calls."* The user's own coding agent later translates them into a real test framework `[agents/reversa-inspector/SKILL.md]`.
 
-**Blitzy mechanism.** Blitzy ships a dedicated **Testing Strategy** section within the specification `[Tech Spec §6.6]`, articulating the testing approach as part of the delivered artifact.
+**Blitzy mechanism.** Blitzy includes a dedicated **Testing Strategy** section within the specification `[Tech Spec §6.6]`. This is **documented test *planning*** — the testing approach described as part of the delivered artifact — **not evidence of runtime execution**: the specification is a document, so it contains no test-run logs, coverage results, or live traces.
 
-**Verdict.** **Blitzy advantage / Reversa limitation.** On runtime and dynamic validation, Reversa performs **no live runtime validation** and emits **no executable tests** in its shipped output; its dynamic-analysis agent (Tracer) is referenced in a template but unimplemented `[templates/plan.md:L56]` `[agents/reversa-inspector/SKILL.md]`. Blitzy's inclusion of a Testing Strategy section gives its artifact a validation-oriented dimension that Reversa's shipped output does not match. This is stated precisely and without overclaim on either side.
+**Verdict (at the level of *documented validation planning*).** **Blitzy advantage / Reversa limitation — narrowly scoped.** In its *shipped output*, Reversa emits **parity specifications, not executable tests**, and its dynamic-analysis agent (Tracer) is **unimplemented in this repository snapshot** `[templates/plan.md:L56]` `[agents/reversa-inspector/SKILL.md]`. Blitzy's specification includes an explicit **Testing Strategy** section, so — *at the level of documented validation planning* — Blitzy's artifact carries a validation-oriented dimension that Reversa's shipped output does not `[Tech Spec §6.6]`. **Crucially, this is not a claim about live execution on either side:** neither absent ArduPilot artifact provides runtime-execution evidence (test-run results or live traces), and both gaps are recorded bilaterally in Appendix B (**B-9** for Reversa, **B-10** for Blitzy). Stated precisely and without overclaim on either side.
 
 **Balance point (Reversa strength, for fairness).** Even without live execution, Reversa's Gherkin parity specs are a genuine, structured head-start for a migration team: they define behavioral-parity expectations in a standard, human-readable, framework-agnostic form that a coding agent can mechanically translate into executable tests `[agents/reversa-inspector/SKILL.md]`. The limitation is real, but so is the value of the artifact Reversa does ship.
 
@@ -231,9 +239,9 @@ flowchart TB
 
 **Blitzy mechanism.** Blitzy delivers a **single consolidated Technical Specification** — the whole system described in one navigable document `[Tech Spec §1.1]` `[Tech Spec §1.3]`.
 
-**Verdict.** **Split by consumer.** Reversa is **stronger for selective machine reuse**: a downstream agent or migration engineer can address exactly one file or one unit `[README.md:§What is generated]` `[agents/reversa-writer/SKILL.md]`. Blitzy is **stronger for human/executive readability and distribution**: one document reads top-to-bottom, versions as a unit, and hands cleanly to a non-technical stakeholder `[Tech Spec §1.1]`.
+**Verdict.** **Split by consumer.** *Source fact:* Reversa emits a multi-file tree in which a downstream agent or migration engineer can address exactly one file or one unit `[README.md:§What is generated]` `[agents/reversa-writer/SKILL.md]`, whereas Blitzy emits one consolidated document `[Tech Spec §1.1]`. *Evaluator inference:* the multi-file form is therefore stronger for **selective machine reuse**, while the single-document form is stronger for **human/executive readability and distribution** — it reads top-to-bottom, versions as a unit, and hands cleanly to a non-technical stakeholder.
 
-**Balance point (Reversa limitation + Blitzy advantage).** Many files raise **navigation and maintenance overhead** and introduce the risk of **cross-file drift** (the same fact stated inconsistently in two places as the tree evolves). A single document has a single source of truth, is trivially versioned, and is far easier to review and hand to an executive `[Tech Spec §1.1]`. The granularity that makes Reversa reusable is the same property that makes it heavier to maintain and consume as a whole.
+**Balance point (Reversa limitation + Blitzy advantage).** *Evaluator inference:* many files raise **navigation and maintenance overhead** and introduce a risk of **cross-file drift** — the same fact stated inconsistently in two places as the tree evolves. A single document, by contrast, keeps one source of truth, versions as one file, and tends to be easier to review and hand to an executive `[Tech Spec §1.1]` `[README.md:§What is generated]`. The granularity that makes Reversa reusable is, in the evaluator's assessment, the same property that makes it heavier to maintain and consume as a whole.
 
 ---
 
@@ -247,17 +255,17 @@ This table is the balance guarantee: **every "stronger" finding is paired with a
 | **1. Traceability** | Reversa: per-claim 🟢/🟡/🔴 + file-level `code-spec-matrix.md` (finer granularity) | Blitzy's RTM is coherent in one navigable document; Reversa's per-claim marks are only as reliable as the host agent applying them | `[agents/reversa-writer/SKILL.md]`; `[Tech Spec §2.5]`; `[README.md]` |
 | **2. Architectural visualization** | Reversa formalizes the explicit C4 triad + full ERD | Blitzy bundles architecture + workflow + state-transition + DB-design diagrams per artifact — broader coverage in one doc | `[agents/reversa-architect/SKILL.md]`; `[Tech Spec §5.1]` `[Tech Spec §4.1]` `[Tech Spec §4.8]` `[Tech Spec §6.2]` |
 | **3. Implicit business-knowledge** | Reversa: dedicated retroactive ADRs + `state-machines.md` + `permissions.md` | Reversa's own spec warns this content is largely 🟡 INFERRED — inference is not fact | `[agents/reversa-detective/SKILL.md]`; `[Tech Spec §9.1]` |
-| **4. Gap transparency** | Reversa: severity-tiered `gaps.md` + `questions.md` + `confidence-report.md` | Independent taxonomy rates Reversa **only partial validation** — labeling ≠ resolving | `[agents/reversa-reviewer/SKILL.md]`; `[arXiv 2606.04967]`; `[Tech Spec §9.1]` |
-| **5. Runtime / dynamic validation** | **Blitzy**: ships a Testing Strategy section | Reversa's Tracer is referenced but unimplemented; shipped output is parity **specs, not executable tests** (still a reusable head-start) | `[Tech Spec §6.6]`; `[templates/plan.md:L56]`; `[agents/reversa-inspector/SKILL.md]` |
-| **6. Output granularity & reusability** | Reversa: ~15+ files + folder-per-unit (selective machine reuse) | Many files raise navigation/maintenance overhead and cross-file drift risk; one document is easier to review/version/hand to an executive | `[README.md:§What is generated]`; `[agents/reversa-writer/SKILL.md]`; `[Tech Spec §1.1]` |
-| **Cross-cutting: executable code** | — | **Reversa produces no executable code or tests** — its parity artifacts are specs, not tests | `[agents/reversa-inspector/SKILL.md]` |
-| **Cross-cutting: enterprise SLA** | — | **Reversa is an MIT-licensed CLI with no enterprise SLA** — an open npm package with four runtime deps and no build/test tooling | `[README.md]`; `[package.json]` |
-| **Cross-cutting: quality ceiling** | — | **Reversa's output quality is bounded by the host AI agent** — it stores/transmits no LLM keys and delegates all intelligence to the agent already present | `[README.md]`; `[third-party tutorial]` |
+| **4. Gap transparency** | Reversa: severity-tiered `gaps.md` + `questions.md` + `confidence-report.md` | *Evaluator analysis:* labeling ≠ resolving — the Reviewer routes 🔴 items to a human-validation queue rather than closing them | `[agents/reversa-reviewer/SKILL.md]`; `[Tech Spec §9.1]` |
+| **5. Runtime / dynamic validation** *(documented planning)* | **Blitzy**: ships a **Testing Strategy** section (documented planning, not runtime execution) | Reversa's Tracer is unimplemented in this repo snapshot; shipped output is parity **specs, not executable tests** (a reusable head-start). *Neither side evidences live ArduPilot execution* — see Appendix B B-9/B-10 | `[Tech Spec §6.6]`; `[templates/plan.md:L56]`; `[agents/reversa-inspector/SKILL.md]` |
+| **6. Output granularity & reusability** | Reversa: ~15+ top-level artifacts + folder-per-unit (selective machine reuse) | *Evaluator inference:* many files raise navigation/maintenance overhead and cross-file-drift risk, whereas one document tends to be easier to review/version/hand to an executive | `[README.md:§What is generated]`; `[agents/reversa-writer/SKILL.md]`; `[Tech Spec §1.1]` |
+| **Cross-cutting: Inspector parity artifacts** | — | **Reversa's *Inspector* emits parity specs, not executable tests** — a narrow claim about the Inspector's artifacts; Reversa's broader product *does* include code-producing workflows (Reconstructor emits code files; `/reversa-forward` evolves specs to running code) | `[agents/reversa-inspector/SKILL.md]`; `[agents/reversa-reconstructor/SKILL.md]`; `[README.md]` |
+| **Cross-cutting: enterprise SLA** | — | **No enterprise SLA is evidenced in the provided inputs** — Reversa ships as an MIT-licensed npm package with four runtime deps and no build/test scripts (absence of evidence in inputs, not proof none exists) | `[README.md]`; `[package.json]` |
+| **Cross-cutting: host-agent dependence** | — | Reversa stores/transmits no LLM keys and delegates all reasoning to the host agent already present. *Evaluator inference:* output quality is **influenced by** that host (alongside source quality, orchestration, prompts, human validation) — a risk to flag, not a hard source-stated ceiling | `[README.md]` |
 | **Cross-cutting: authors' own stance** | — | **Reversa's authors disclaim superiority** — the paper positions it as a framework + evaluation protocol + first exploratory evidence point | `[arXiv 2605.18684]` |
-| **Cross-cutting: validation maturity** | — | **Only partial validation** per an independent taxonomy — via confidence/gap labels | `[arXiv 2606.04967]` |
+| **Cross-cutting: external taxonomy context** | — | *Checkable abstract-level fact:* a process-taxonomy paper (by Reversa's own first author) assessing six frameworks incl. Reversa finds **no framework strongly covers all six** of its dimensions (specification/context/roles/execution/validation/portability) | `[arXiv 2606.04967]` |
 | **Cross-cutting: Blitzy enterprise breadth** | **Blitzy**: dedicated Security, Monitoring & Observability, Testing, CI/CD sections | This breadth is delivery-oriented; it is not the same as Reversa's per-claim source traceability, where Reversa leads | `[Tech Spec §6.4]` `[Tech Spec §6.5]` `[Tech Spec §6.6]` `[Tech Spec §8.6]`; `[agents/reversa-writer/SKILL.md]` |
 
-**Reading of the table.** No row asserts an unqualified win. Reversa's genuine strengths (rows 1, 3, 4, 6) each carry a real limitation; Blitzy's genuine strengths (rows 2, 5, and the enterprise-breadth row) each carry a fair acknowledgment of Reversa's compensating value. This is the honest posture the account team should carry into client conversations.
+**Reading of the table.** No row asserts an unqualified win. Reversa's genuine strengths (rows 1, 3, 4, 6) each carry a real limitation; Blitzy's genuine strengths (rows 2, 5, and the enterprise-breadth row) each carry a fair acknowledgment of Reversa's compensating value. Where a "stronger" finding or counter-point states a downstream *consequence* — readability, navigation overhead, cross-file drift, ease of reuse — it is labeled *evaluator inference*. That label marks a reasoned assessment derived from the artifacts' structure and methodology: not a source-stated fact, and not a measured ArduPilot outcome. The **source-confirmed** claims (which artifacts exist, what each agent emits, licensing, the confidence scale) are cited directly to a repository path or a specification section. This is the honest posture the account team should carry into client conversations.
 
 ---
 
@@ -267,9 +275,9 @@ This table is the balance guarantee: **every "stronger" finding is paired with a
 This part reproduces, **in Reversa's artifact style**, the documentation types Blitzy under-produces relative to Reversa. Two rules apply throughout:
 
 1. **All content here is a *format demonstration*, not ArduPilot evidence.** The rendered ArduPilot artifacts were not provided (§0.2), so every example below uses **clearly generic, non-ArduPilot illustrative data** or an explicit 🔴 GAP placeholder. Nothing here should be read as a real ArduPilot fact; all such facts are routed to Appendix B.
-2. **Each subsection ends with a "Why Blitzy did not measure up" note** grounded in **access-scope / methodology** reasons — chiefly that Reversa installs *inside* the legacy repository with direct read access to the code and Git history, and enforces per-claim confidence discipline, whereas Blitzy's citation operates at the document/section level.
+2. **Each subsection ends with a "Why Blitzy did not measure up" note**, grounded in **access-scope / methodology** reasons. Chiefly, Reversa installs *inside* the legacy repository, with direct read access to the code and Git history, and enforces per-claim confidence discipline. Blitzy's citation, by contrast, operates at the document/section level.
 
-The recurring access-scope driver is worth stating once: Reversa's policy layer restricts all writes to exactly four folders — `.reversa/`, `_reversa_sdd/`, `_reversa_docs/`, `_reversa_forward/` — and injects the rule, translated, *"Never delete, modify, or overwrite pre-existing files of the legacy project"* `[lib/installer/policy.js]` `[README.md:§Guaranteed immutability]`. Because it runs in-place with full **read** access to source and Git history, Reversa can mine provenance (per-claim confidence, code↔spec coverage, Git-archaeology ADRs) that a document-level methodology does not natively surface.
+The recurring access-scope driver is worth stating once. Reversa's policy layer, through its `getWritableFolders()` function, restricts all writes to exactly four folders — `.reversa/`, `_reversa_sdd/`, `_reversa_docs/`, and `_reversa_forward/` `[lib/installer/policy.js]`. That four-folder enumeration is the authoritative source for the write boundary. The README states the same guarantee at a higher level — *"Never delete, modify, or overwrite pre-existing files of the legacy project"* — where its immutability summary names the `.reversa/` and `_reversa_sdd/` outputs `[README.md:§Guaranteed immutability]`. Because Reversa runs in-place with full **read** access to source and Git history, it can mine provenance — per-claim confidence, code↔spec coverage, and Git-archaeology ADRs — that a document-level methodology does not natively surface.
 
 ### 4.1 `confidence-report.md`-style confidence summary
 
@@ -284,7 +292,7 @@ The recurring access-scope driver is worth stating once: Reversa's policy layer 
 
 > 🔴 **GAP (input absent):** the *real* per-unit confidence counts for the ArduPilot outputs cannot be produced — the rendered `_reversa_sdd/` tree was not provided (see Appendix B).
 
-**Why Blitzy did not measure up.** A per-claim confidence tally requires that *every claim* first carry a confidence tag; Reversa enforces this at authoring time via the Writer's mandatory tagging rule `[agents/reversa-writer/SKILL.md]`, which is a *methodology* choice available to it because it reads the code directly and marks each statement's provenance. Blitzy's specification uses document/section-level citation `[Tech Spec §2.5]` rather than per-claim confidence marks, so a `confidence-report.md`-style tally has no per-claim substrate to aggregate. This is a methodology gap, not a capability failure — and §1.4 lists adopting optional per-claim tags as a concrete improvement.
+**Why Blitzy did not measure up.** A per-claim confidence tally requires that *every claim* first carry a confidence tag. Reversa enforces this at authoring time via the Writer's mandatory tagging rule `[agents/reversa-writer/SKILL.md]`. That is a *methodology* choice available to it because it reads the code directly and marks each statement's provenance. Blitzy's specification uses document/section-level citation `[Tech Spec §2.5]` rather than per-claim confidence marks, so a `confidence-report.md`-style tally has no per-claim substrate to aggregate. This is a methodology gap, not a capability failure — and §1.4 lists adopting optional per-claim tags as a concrete improvement.
 
 ### 4.2 `code-spec-matrix.md`-style traceability matrix
 
@@ -425,58 +433,99 @@ erDiagram
 ---
 
 
-## Appendix A — Evidence Citation Index
+## Appendix A — Evidence Citation Index & Claim-Level Audit
 
-This index is the audit trail proving the **no-fabrication** and **dual-sided-citation** constraints are met: every claim maps to a checkable source. Reversa-side sources are repository paths; Blitzy-side sources are Technical Specification sections; external sources are arXiv identifiers or the third-party tutorial.
+This appendix is the audit trail for the **no-fabrication** and **dual-sided-citation** constraints. Section **A.1** audits the document's *material claims* one by one — mapping each claim to where it appears, the exact source or pinpoint, and its evidence status. Sections **A.2–A.4** are source keys (Reversa-side repository paths, Blitzy-side specification sections, and fully identified external papers). Section **A.5** lists the **evaluator inferences** separately, so a reader can tell a source-confirmed fact from a reasoned assessment at a glance.
 
-### A.1 Reversa-side sources (repository paths — all read-only)
+**Evidence-status legend:**
 
-| Source | What it authoritatively establishes | Used in |
-|--------|--------------------------------------|---------|
-| `README.md` (§Confidence scale) | The 🟢 CONFIRMED / 🟡 INFERRED / 🔴 GAP scale | Part 0; Dim 1; Part 4.1 |
-| `README.md` (§What is generated) | The `_reversa_sdd/` ~15+ file taxonomy + subfolders | Dim 6; Part 4 |
-| `README.md` (§Guaranteed immutability) | Writes restricted to `.reversa/` and `_reversa_sdd/`; never deletes/modifies existing files | Part 4 intro |
-| `README.md` (no-API-keys) | All intelligence delegated to the host agent → quality bounded by host | Dim 1; Part 3 |
-| `docs/saidas/index.md` | Output taxonomy, documentation-level tiers, `code-spec-matrix.md` / `spec-impact-matrix.md` | Dim 1, 2, 6 |
-| `agents/reversa-writer/SKILL.md` | Folder-per-unit specs; mandatory per-claim confidence tagging; `code-spec-matrix.md` | Dim 1, 6; Part 4.1, 4.2 |
-| `agents/reversa-architect/SKILL.md` | C4 triad (context/containers/components); full ERD; spec-impact-matrix | Dim 2; Part 4.7 |
-| `agents/reversa-detective/SKILL.md` | Retroactive ADRs (Git archaeology); `state-machines.md`; `permissions.md`; "much will be 🟡" | Dim 3; Part 4.3, 4.4, 4.5 |
-| `agents/reversa-reviewer/SKILL.md` | `questions.md`; severity-tiered `gaps.md`; `confidence-report.md` | Dim 4; Part 4.1, 4.6 |
-| `agents/reversa-inspector/SKILL.md` | Gherkin parity specs — explicitly "specs, not executable tests" | Dim 5; Part 3 |
-| `templates/plan.md` (L56) | 5-phase pipeline; "Tracer — dynamic analysis" referenced (unimplemented) | Dim 5; Part 3 |
-| `lib/installer/policy.js` | `getWritableFolders()` 4-folder boundary; non-destructiveness rule | Part 4 intro & subsections |
-| `package.json` | `reversa` v1.2.49, ESM, no scripts block, 4 deps, MIT (no enterprise SLA) | Part 1.5; Part 3 |
+- 🟢 **Source-confirmed** — directly supported by the cited repository path or specification section.
+- 📄 **External (abstract-level)** — supported by a fully identified external paper's public abstract.
+- 🟡 **Evaluator inference** — a reasoned assessment, labeled as such in the body (see A.5).
+- 🔴 **GAP (input absent)** — requires a rendered ArduPilot artifact; routed to Appendix B.
 
-### A.2 Blitzy-side sources (Technical Specification sections)
+### A.1 Material-claims audit
 
-| Section | What it establishes | Used in |
-|---------|---------------------|---------|
-| `§1.1` Executive Summary | Single consolidated artifact / product framing | Dim 6; Part 3 |
-| `§1.3` Scope | Product framing | Dim 6 |
-| `§2.5` Requirements Traceability Matrix | Blitzy's citation/traceability mechanism | Dim 1; Part 4.1, 4.2 |
-| `§4.1` System Workflows | Workflow diagrams | Dim 2 |
-| `§4.8` State Transition Diagrams | State diagrams | Dim 2; Part 4.4 |
-| `§5.1` High-Level Architecture | Architecture description | Dim 2; Part 4.7 |
-| `§6.2` Database Design | ERD-equivalent | Dim 2; Part 4.7 |
-| `§6.4` Security | Enterprise security breadth | Part 1; Part 4.5; Part 3 |
-| `§6.5` Monitoring & Observability | Enterprise operational breadth | Part 1; Part 3 |
-| `§6.6` Testing Strategy | Runtime/validation dimension | Dim 5; Part 3 |
-| `§8.6` CI/CD Pipeline | Enterprise delivery breadth | Part 1; Part 3 |
-| `§9.1` Additional Technical Information | Assumptions ("what we don't know") | Dim 3, 4; Part 4.3, 4.6 |
+| # | Material claim | Where it appears | Source / pinpoint | Status |
+|---|----------------|------------------|-------------------|:------:|
+| 1 | Reversa tags **every** spec statement 🟢/🟡/🔴, mandatorily | Dim 1; §1.2; §4.1 | `[README.md:§Confidence scale]`; `[agents/reversa-writer/SKILL.md]` — Writer rule *"Mark every statement with 🟢/🟡/🔴. No exceptions."* | 🟢 |
+| 2 | A `code-spec-matrix.md` maps each legacy file to its spec unit; uncovered files flagged `n/a` | Dim 1, 6; §4.2 | `[agents/reversa-writer/SKILL.md]`; `[docs/saidas/index.md]` (completo/detalhado tiers) | 🟢 |
+| 3 | Blitzy provides a Requirements Traceability Matrix (requirement→design→implementation) | Dim 1; §1.2; §4.1–4.2 | `[Tech Spec §2.5]` | 🟢 |
+| 4 | Reversa Architect emits the C4 triad + full ERD (cardinalities 1:1/1:N/N:M, PK/FK) + spec-impact-matrix | Dim 2; §4.7 | `[agents/reversa-architect/SKILL.md]`; `[docs/saidas/index.md]` | 🟢 |
+| 5 | Blitzy pairs architecture + workflows + state-transition + DB-design diagrams in one document | Dim 2 | `[Tech Spec §5.1]` `[Tech Spec §4.1]` `[Tech Spec §4.8]` `[Tech Spec §6.2]` | 🟢 |
+| 6 | Reversa Detective produces retroactive ADRs (Git archaeology), `state-machines.md`, `permissions.md`; ADR "Alternatives"/"Consequences" at deepest level | Dim 3; §4.3–4.5 | `[agents/reversa-detective/SKILL.md]` | 🟢 |
+| 7 | Detective warns the implicit-knowledge content is largely 🟡 INFERRED (*"much here will be 🟡"*) | Dim 3 (balance); §1.2 | `[agents/reversa-detective/SKILL.md]` | 🟢 |
+| 8 | Blitzy captures implicit knowledge as assumptions in Additional Technical Information | Dim 3, 4; §4.3, 4.6 | `[Tech Spec §9.1]` | 🟢 |
+| 9 | Reviewer emits `questions.md`, severity-tiered `gaps.md` (critical/moderate/cosmetic at deepest level), `confidence-report.md` (counts + overall %) | Dim 4; §4.1, 4.6 | `[agents/reversa-reviewer/SKILL.md]` | 🟢 |
+| 10 | Inspector emits Gherkin parity specs, explicitly *"specs, not executable tests"* | Dim 5; §1.6; Part 3 | `[agents/reversa-inspector/SKILL.md]` (L20, L144) | 🟢 |
+| 11 | Reversa's broader product **does** produce code (Reconstructor implements tasks/emits code files; `/reversa-forward` evolves specs to running code) | §1.6; Part 3 | `[agents/reversa-reconstructor/SKILL.md]`; `[README.md]` | 🟢 |
+| 12 | "Tracer — dynamic analysis" is listed in the plan template but has **no `agents/reversa-tracer/` implementation** in this repository snapshot | Dim 5; §1.2; Part 3 | `[templates/plan.md:L56]` + verification against the full `agents/` roster | 🟢 |
+| 13 | Blitzy includes a Testing Strategy section (documented planning, not runtime execution) | Dim 5; §1.6; Part 3 | `[Tech Spec §6.6]` | 🟢 |
+| 14 | Reversa restricts writes to **exactly four** folders (`.reversa/`, `_reversa_sdd/`, `_reversa_docs/`, `_reversa_forward/`) | §4 intro | `[lib/installer/policy.js]` — `getWritableFolders()` | 🟢 |
+| 15 | Reversa never deletes/modifies/overwrites pre-existing legacy files (higher-level summary names `.reversa/` + `_reversa_sdd/`) | §4 intro | `[README.md:§Guaranteed immutability]` | 🟢 |
+| 16 | Reversa ships as an MIT npm package (v1.2.49, ESM, 4 deps, no scripts block) | §1.1, §1.6; Part 3 | `[package.json]` | 🟢 |
+| 17 | **No enterprise SLA is evidenced in the provided inputs** (absence of evidence, not proof of absence) | §1.6; Part 3 | `[package.json]`; `[README.md]` (silent on SLA) | 🔴/🟢 (bounded) |
+| 18 | `_reversa_sdd/` is ~15+ top-level artifacts + subfolders, tiered by documentation level | Dim 6; §1.3, 1.5 | `[README.md:§What is generated]`; `[docs/saidas/index.md]` | 🟢 |
+| 19 | Reversa stores/transmits no LLM API keys; delegates reasoning to the host agent | Dim 1; §1.6; Part 3 | `[README.md]` | 🟢 |
+| 20 | arXiv 2605.18684: multi-agent pipeline; three mechanisms (traceability, confidence, gap preservation); authors disclaim superiority | Dim 1, 3, 4; §1.3, 1.6; Part 3 | `[arXiv 2605.18684]` (abstract) | 📄 |
+| 21 | arXiv 2606.04967: six-dimension taxonomy assessing six frameworks incl. Reversa; **no framework strongly covers all six** | Dim 4; §1.2, 1.6; Part 3 | `[arXiv 2606.04967]` (abstract) | 📄 |
+| — | All ArduPilot **instance-level** figures (file counts, coverage %, diagram counts, line-level facts) | (not asserted; see Appendix B) | Rendered ArduPilot artifacts — **not provided** | 🔴 |
 
-### A.3 External corroboration
+### A.2 Reversa-side source key (repository paths — all read-only)
 
-| Identifier | What it corroborates | Used in |
-|------------|----------------------|---------|
-| `[arXiv 2605.18684]` (Macedo & da Costa, May 2026) | Multi-agent pipeline; three mechanisms (traceability, confidence, gap preservation); authors disclaim superiority | Dim 1, 3, 4; Part 1.5; Part 3 |
-| `[arXiv 2606.04967]` (taxonomy) | Reversa strong in context/specification but **only partial validation** | Dim 4; Part 1.5; Part 3 |
-| `[third-party tutorial]` (May 2026) | C4/ERD/state machines/API contracts; 🟢/🟡/🔴 tags; read-only; runs inside host agent → quality bounded by host | Dim 1; Part 1.5; Part 3 |
+| Source | What it establishes |
+|--------|---------------------|
+| `README.md` (§Confidence scale, §What is generated, §Guaranteed immutability) | 🟢/🟡/🔴 scale; `_reversa_sdd/` taxonomy; non-destructiveness summary (`.reversa/`, `_reversa_sdd/`) |
+| `docs/saidas/index.md` | Output taxonomy; documentation-level tiers; `code-spec-matrix.md` / `spec-impact-matrix.md` |
+| `agents/reversa-writer/SKILL.md` | Folder-per-unit specs; mandatory per-claim tagging; `code-spec-matrix.md` |
+| `agents/reversa-architect/SKILL.md` | C4 triad; full ERD; spec-impact-matrix |
+| `agents/reversa-detective/SKILL.md` | Retroactive ADRs (Git archaeology); `state-machines.md`; `permissions.md`; "much will be 🟡" |
+| `agents/reversa-reviewer/SKILL.md` | `questions.md`; severity-tiered `gaps.md`; `confidence-report.md` |
+| `agents/reversa-inspector/SKILL.md` | Gherkin parity specs — *"specs, not executable tests"* |
+| `agents/reversa-reconstructor/SKILL.md` | Implements tasks on demand; emits implemented code files (Reversa's code-producing path) |
+| `templates/plan.md` (L56) | 5-phase pipeline; "Tracer — dynamic analysis" listed (no agent implementation in snapshot) |
+| `lib/installer/policy.js` | `getWritableFolders()` — the authoritative four-folder write boundary |
+| `package.json` | `reversa` v1.2.49, ESM, no scripts block, 4 deps, MIT |
+
+### A.3 Blitzy-side source key (Technical Specification sections)
+
+| Section | What it establishes |
+|---------|---------------------|
+| `§1.1` Executive Summary / `§1.3` Scope | Single consolidated artifact; product framing |
+| `§2.5` Requirements Traceability Matrix | Blitzy's citation/traceability mechanism |
+| `§4.1` System Workflows / `§4.8` State Transition Diagrams | Workflow and state diagrams |
+| `§5.1` High-Level Architecture / `§6.2` Database Design | Architecture description; ERD-equivalent |
+| `§6.4` Security / `§6.5` Monitoring & Observability / `§8.6` CI/CD Pipeline | Enterprise-breadth sections |
+| `§6.6` Testing Strategy | Documented validation planning |
+| `§9.1` Additional Technical Information | Assumptions ("what we don't know") |
+
+### A.4 External sources (fully identified)
+
+| Identifier | Full citation | What it supports (abstract-level) |
+|------------|---------------|-----------------------------------|
+| `[arXiv 2605.18684]` | Sanderson Oliveira de Macedo & Ronaldo Martins da Costa, *Reversa: A Reverse Documentation Engineering Framework for Converting Legacy Software into Operational Specifications for AI Agents*, arXiv:2605.18684 [cs.SE], 18 May 2026 | Multi-agent pipeline; three emphasized mechanisms (traceability, explicit confidence marking, gap preservation for human validation); authors position the work as a framework/evaluation protocol, not a proof of superiority |
+| `[arXiv 2606.04967]` | Sanderson Oliveira de Macedo, *From Prompt to Process: a Process Taxonomy and Comparative Assessment of Frameworks Supporting AI Software Development Agents*, arXiv:2606.04967 [cs.SE], 3 Jun 2026 (same first author as 2605.18684) | A six-dimension process taxonomy (specification, context, roles, execution, validation, portability) assessing six frameworks incl. Reversa; concludes **no framework strongly covers all six** dimensions |
+
+*A source that could not be identified with checkable metadata (a "third-party tutorial" referenced in earlier drafts) has been **removed**; every point it would have supported is re-grounded on the in-repository paths above or labeled as an evaluator inference in A.5.*
+
+### A.5 Evaluator inferences (labeled reasoned assessments — not source-stated facts)
+
+These are the analyst's reasoned conclusions from the source-confirmed facts above. Each is labeled *evaluator inference* / *evaluator analysis* / *account-team judgment* at its point of use, and none is presented as a measured ArduPilot outcome.
+
+| # | Evaluator inference | Reasoning basis | Where labeled |
+|---|---------------------|-----------------|---------------|
+| E-1 | Output quality is *influenced by* the host coding agent's capability | Reversa delegates reasoning to the host and stores no keys (claim 19); quality therefore depends on the environment, alongside source quality, prompts, and human validation | Dim 1; §1.6; Part 3 |
+| E-2 | A single consolidated document tends to be easier to review, version, and hand to an executive | Blitzy emits one document (claim 3, 16); many-file trees add navigation/drift overhead | §1.2, 1.3, 1.5; Dim 6; Part 3 |
+| E-3 | A many-file tree raises navigation/maintenance overhead and cross-file-drift risk | Reversa emits ~15+ artifacts + subfolders (claim 18) | §1.4; Dim 6; Part 3 |
+| E-4 | Dedicated artifacts tend to extract implicit knowledge more thoroughly/addressably than a consolidated section | Reversa emits dedicated ADR/state-machine/permission artifacts (claim 6) vs. Blitzy's assumptions section (claim 8) | Dim 3 |
+| E-5 | Labeling a gap documents uncertainty but does not resolve it | Reviewer routes 🔴 items to a human-validation queue (claim 9) | Dim 4; §1.2; Part 3 |
+| E-6 | Buyer-fit / usability / market positioning (e.g., breadth is "frequently decisive" for enterprise accounts) | Account-team synthesis from artifact structure; explicitly not validated against a rendered ArduPilot run | §1.1–1.5 (labeled) |
 
 ---
 
 ## Appendix B — Gap Register
 
-This register mirrors Reversa's 🔴 GAP discipline `[README.md:§Confidence scale]`. It records every point that would require **ArduPilot line-level evidence** but is **absent from the provided inputs**. None of these points is asserted anywhere in the body of this document; each is deferred here honestly.
+This register mirrors Reversa's 🔴 GAP discipline `[README.md:§Confidence scale]`. It records every point that would require **ArduPilot line-level evidence** but is **absent from the provided inputs**. To be precise about what the body does and does not claim: the body *does* make methodology- and capability-level comparisons, each cited to the proxies named in Part 0. What the body **never** asserts is any **ArduPilot-instance value or content** — actual file counts, coverage percentages, diagram counts, or line-level facts on the rendered outputs. Every such instance-level point is deferred to this register honestly rather than fabricated.
 
 | # | What is missing | Dimension(s) affected | Why it cannot be asserted | What input would resolve it |
 |---|-----------------|-----------------------|---------------------------|------------------------------|
@@ -488,11 +537,11 @@ This register mirrors Reversa's 🔴 GAP discipline `[README.md:§Confidence sca
 | B-6 | 🔴 **Actual diagram counts / contents** (C4, ERD, state machines) on the ArduPilot outputs | 2, 3 | No rendered architecture artifacts to inspect | The rendered Reversa ArduPilot tree (B-1) |
 | B-7 | 🔴 **Actual retroactive ADRs / state machines / permissions** for ArduPilot | 3 | ArduPilot Git history and code were not provided | ArduPilot repository + rendered Reversa tree (B-1) |
 | B-8 | 🔴 **Actual gap/question register contents** for ArduPilot | 4 | No rendered `gaps.md` / `questions.md` to read | The rendered Reversa ArduPilot tree (B-1) |
-| B-9 | 🔴 **Any live runtime-trace data** for ArduPilot | 5 | Reversa's Tracer is unimplemented `[templates/plan.md:L56]`; no runtime data exists in inputs | An implemented dynamic-analysis capability + an accessible running system |
+| B-9 | 🔴 **Any live runtime-trace / dynamic-execution evidence from Reversa** for ArduPilot | 5 | Reversa's shipped validation output is parity **specs, not executable tests** `[agents/reversa-inspector/SKILL.md]`, and its "Tracer" dynamic-analysis agent is listed in the plan template but **unimplemented** in this repo snapshot `[templates/plan.md:L56]`; no runtime-trace data can exist in the provided inputs | An implemented dynamic-analysis capability run against an accessible, running ArduPilot system, producing captured execution traces |
+| B-10 | 🔴 **Any live test-run / execution results from Blitzy** for ArduPilot | 5 | Blitzy's **Testing Strategy** section is documented validation *planning* `[Tech Spec §6.6]`, not captured execution output; the rendered Blitzy ArduPilot Technical Specification (B-2) was not provided, so no actual test-run results are available in inputs | The rendered Blitzy ArduPilot specification (B-2) plus executed test results (pass/fail records) from running the planned tests against ArduPilot |
 
 **Explicit statement of consequence.** Because both rendered ArduPilot artifacts (B-1, B-2) are absent from the provided inputs, **no ArduPilot-specific quantitative comparison** — file counts, coverage percentages, or diagram counts on the *actual* ArduPilot outputs — is possible from the provided inputs. The comparison in Parts 1–4 is conducted strictly at the **methodology / capability level**, using the authoritative proxies named in Part 0. Every superiority claim in this document is a claim about **method and capability**, each paired with a checkable counter-point in Part 3, and none is a claim about un-provided ArduPilot line-level facts.
 
 ---
 
 *End of analysis. This document is the single deliverable; no other repository file was created or modified in producing it.*
-
